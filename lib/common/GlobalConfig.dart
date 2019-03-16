@@ -12,4 +12,7 @@ class GlobalConfig {
   static String homeTab = "首页";
   static String classyTab = "分类";
   static String mineTab = "我的";
+
+  // 侧边栏
+  static String welfare = "福利";
 }

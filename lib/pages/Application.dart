@@ -55,7 +55,7 @@ class _ApplicationState extends State<Application> {
         controller: _pageController,
         // onPageChanged: _onPageChanged,
         children: <Widget>[HomePage(), ClassifyPage(), MinePage()],
-        physics: NeverScrollableScrollPhysics(), // 这句话表示不能拖动换页面
+        physics: NeverScrollableScrollPhysics(), // 表示不能拖动换页面
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: _bottomTabItems,
