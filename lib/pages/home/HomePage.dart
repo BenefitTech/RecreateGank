@@ -5,6 +5,8 @@ import 'package:recreate_gank/api/HTTP.dart';
 import 'package:recreate_gank/model/DailyResponse.dart';
 import 'package:recreate_gank/utils/SharedUtils.dart';
 
+import 'HomeBodyView.dart';
+
 import 'dart:convert';
 
 class HomePage extends StatefulWidget {
@@ -16,60 +18,55 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with HTTP {
-  String snapshot;
+  Object snapshot;
   var url = API.feed + '福利/5/1';
 
   Future<Null> _pullToRefresh() async {
+    // 先从缓冲中取，再去网络请求
     requestHomeBanner(url);
-    await future(url: API.today).then((String data){
-      setState(() {
-        snapshot =data;
-        print('刷新成功');
+    // await future(url: API.today).then((String data) {
+    //   setState(() {
+    //     snapshot = data;
+    //     print('刷新成功');
 
-        // 缓存网络请求的数据
-        SharedUtils.saveString(API.today, json.encode(data));
-      });
-    });
-
+    //     // 缓存网络请求的数据
+    //     SharedUtils.saveString(API.today, json.encode(data));
+    //   });
+    // });
   }
 
   @override
   void initState() {
     super.initState();
 
-    loadingData();
+    ///请求首页item数据
+    getHomeItemData();
   }
 
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
+      child: buildHomeDailyView(context, snapshot),
       onRefresh: _pullToRefresh,
-      
     );
   }
 
-  void loadingData (){
-    ///请求首页item数据
-    getHomeItemData();
-  }
-
   // 请求banner数据
-  void loadBannerData() async {
-    print('feedListUrl: $url');
+  // void loadBannerData() async {
+  //   print('feedListUrl: $url');
 
-    // 先从缓存中获取获取banner图片数据
-    var cacheData = await SharedUtils.get(url);
-    if (cacheData != null) {
-      var userMap = json.decode(cacheData);
-      CategoryResponse category = CategoryResponse.fromJson(userMap);
-      print("banner获取缓存数据成功");
-    } else {
-      print("banner网络请求数据成功");
+  //   // 先从缓存中获取获取banner图片数据
+  //   var cacheData = await SharedUtils.get(url);
+  //   if (cacheData != null) {
+  //     var userMap = json.decode(cacheData);
+  //     CategoryResponse category = CategoryResponse.fromJson(userMap);
+  //     print("banner获取缓存数据成功");
+  //   } else {
+  //     print("banner网络请求数据成功");
 
-      requestHomeBanner(url);
-
-    }
-  }
+  //     requestHomeBanner(url);
+  //   }
+  // }
 
   // 通过网络请求获取banner数据
   void requestHomeBanner(String url) {
