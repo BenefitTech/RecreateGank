@@ -55,14 +55,13 @@ Widget _buildListViewBuilder(BuildContext context, List data) {
   return ListView.builder(
     physics: AlwaysScrollableScrollPhysics(),
     padding: EdgeInsets.all(2.0),
-    itemCount: data == null ? 0 : 1, //data.length,
+    itemCount: data == null ? 0 : data.length,
     itemBuilder: (context, i) {
-      // if (i == 0) {
-      //   return homeBuildRows(data[i]);
-      // }
-      return homeBuildRows(data[i]);
-
-      // return buildRow(context, data[i]);
+      if (i == 0) {
+        return homeBuildRows(data[i]);
+      } else {
+        return buildRow(context, data[i]);
+      }
     },
   );
 }
