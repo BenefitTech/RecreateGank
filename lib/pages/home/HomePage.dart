@@ -24,15 +24,6 @@ class _HomePageState extends State<HomePage> with HTTP {
   Future<Null> _pullToRefresh() async {
     // 先从缓冲中取，再去网络请求
     requestHomeBanner(url);
-    // await future(url: API.today).then((String data) {
-    //   setState(() {
-    //     snapshot = data;
-    //     print('刷新成功');
-
-    //     // 缓存网络请求的数据
-    //     SharedUtils.saveString(API.today, json.encode(data));
-    //   });
-    // });
   }
 
   @override
@@ -77,6 +68,7 @@ class _HomePageState extends State<HomePage> with HTTP {
           // setState(() {
           //   //
           // });
+          print(listData);
           // 只缓存第一页数据
           SharedUtils.saveString(url, json.encode(category));
         }
