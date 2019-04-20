@@ -4,7 +4,7 @@ import 'package:recreate_gank/pages/components/HomeBanner.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget homeBuildRows(List postData) {
+Widget homeBuildRows(postData) {
   List<PostData> banner = List();
   if (postData != null) {
     for (var value in postData[0]) {
