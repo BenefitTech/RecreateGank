@@ -69,6 +69,7 @@ class _DetailPageState extends State<DetailPage> with HTTP, IndicatorFactory {
             loadingMore();
           }
         },
+        child: buildListViewBuilder(context, listData),
       );
     }
 
@@ -139,6 +140,7 @@ class _DetailPageState extends State<DetailPage> with HTTP, IndicatorFactory {
     var cacheData = await SharedUtils.get(url);
     if (cacheData != null) {
       var userMap = json.decode(cacheData);
+      print('缓存数据$userMap');
       CategoryResponse categoryResponse = CategoryResponse.fromJson(userMap);
       print('获取缓存数据成功');
       setState(() {

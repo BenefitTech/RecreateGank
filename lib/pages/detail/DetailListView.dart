@@ -22,12 +22,12 @@ Widget buildCategoryListView(BuildContext context, AsyncSnapshot snapshot) {
     if (categoryResponse.results.length == 0) {
       return buildExceptionIndicator("这里空空如也。。。");
     } else {
-      return _buildListViewBuilder(context, results);
+      return buildListViewBuilder(context, results);
     }
   }
 }
 
-Widget _buildListViewBuilder(BuildContext context, List results) {
+Widget buildListViewBuilder(BuildContext context, List results) {
   switch (results.length) {
     case 1:
       return Center(
