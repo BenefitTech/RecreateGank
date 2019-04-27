@@ -14,8 +14,8 @@ import 'DetailListView.dart';
 import 'package:recreate_gank/pages/components/LittleWidget.dart';
 
 class DetailPage extends StatefulWidget {
-  String feedType;
-  bool showTitle = false;
+  final String feedType;
+  final bool showTitle;
 
   DetailPage({Key key, this.feedType, this.showTitle}) : super(key: key);
 
@@ -31,9 +31,9 @@ class _DetailPageState extends State<DetailPage> with HTTP, IndicatorFactory {
 
   RefreshController refreshController;
 
-  void enterRefresh() {
-    refreshController.requestRefresh(true);
-  }
+  // void enterRefresh() {
+  //   refreshController.requestRefresh(true);
+  // }
 
   @override
   void initState() {
@@ -41,7 +41,11 @@ class _DetailPageState extends State<DetailPage> with HTTP, IndicatorFactory {
 
     refreshController = RefreshController();
 
-    loadingData();
+    initialGetData() async {
+      await loadingData(false, isLoadMore: false);
+    }
+
+    initialGetData();
   }
 
   @override
@@ -87,17 +91,37 @@ class _DetailPageState extends State<DetailPage> with HTTP, IndicatorFactory {
     }
   }
 
-  // 网络请求
-  getNewList(bool isLoadMore) async {
+  // 下拉刷新
+  Future pullToRefresh() async {
+    currentPage = 1;
+    await loadingData(true, isLoadMore: false);
+    return null;
+  }
+
+  // 加载更多
+  void loadingMore() async {
+    currentPage++;
+    await loadingData(true, isLoadMore: true);
+  }
+
+  // 加载初始数据
+  Future<bool> loadingData(bool forceRequest, {bool isLoadMore}) async {
     String url = getURL();
-    await getGankFromNet(url).then((CategoryResponse category) {
+
+    if (!isLoadMore) {
+      refreshController.sendBack(true, RefreshStatus.idle);
+    }
+    try {
+      final data = await getNetworkDataOrCachedData(
+          forceRequest: forceRequest, cached: !isLoadMore, url: url);
+      Map<String, dynamic> jsonData = jsonDecode(data);
+      CategoryResponse category = CategoryResponse.fromJson(jsonData);
       if (!category.error) {
         var listData = category.results;
         if (listData.length > 0) {
           setState(() {
             if (!isLoadMore) {
               this.listData = listData;
-              SharedUtils.saveString(url, json.encode(category.toString()));
             } else {
               List list = List();
               list.addAll(this.listData);
@@ -115,42 +139,9 @@ class _DetailPageState extends State<DetailPage> with HTTP, IndicatorFactory {
       }
 
       return false;
-    }).catchError((error) {
-      refreshController.sendBack(true, RefreshStatus.failed);
+    } catch (e) {
+      refreshController.sendBack(!isLoadMore, RefreshStatus.failed);
       return false;
-    });
-  }
-
-  // 下拉刷新
-  Future pullToRefresh() async {
-    currentPage = 1;
-    await getNewList(false);
-    return null;
-  }
-
-  // 加载更多
-  void loadingMore() {
-    currentPage++;
-    getNewList(true);
-  }
-
-  // 加载初始数据
-  void loadingData() async {
-    String url = getURL();
-    var cacheData = await SharedUtils.get(url);
-    if (cacheData != null) {
-      var userMap = json.decode(cacheData);
-      print('缓存数据$userMap');
-      CategoryResponse categoryResponse = CategoryResponse.fromJson(userMap);
-      print('获取缓存数据成功');
-      setState(() {
-        listData = categoryResponse.results;
-      });
-    }
-
-    if (listData == null) {
-      print('缓存为空时，请求数据');
-      getNewList(false);
     }
   }
 

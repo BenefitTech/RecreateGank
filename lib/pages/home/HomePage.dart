@@ -78,7 +78,9 @@ class _HomePageState extends State<HomePage> with HTTP {
 
   // 请求首页Item数据
   void getHomeItemData() {
-    getCacheData(url: API.today).then((data) {
+    getNetworkDataOrCachedData(
+            forceRequest: false, cached: true, url: API.today)
+        .then((data) {
       setState(() {
         snapshot = data;
       });
