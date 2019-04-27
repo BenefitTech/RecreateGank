@@ -94,6 +94,7 @@ class _DetailPageState extends State<DetailPage> with HTTP, IndicatorFactory {
   // 下拉刷新
   Future pullToRefresh() async {
     currentPage = 1;
+    refreshController.sendBack(true, RefreshStatus.refreshing);
     await loadingData(true, isLoadMore: false);
     return null;
   }
@@ -108,9 +109,6 @@ class _DetailPageState extends State<DetailPage> with HTTP, IndicatorFactory {
   Future<bool> loadingData(bool forceRequest, {bool isLoadMore}) async {
     String url = getURL();
 
-    if (!isLoadMore) {
-      refreshController.sendBack(true, RefreshStatus.idle);
-    }
     try {
       final data = await getNetworkDataOrCachedData(
           forceRequest: forceRequest, cached: !isLoadMore, url: url);
