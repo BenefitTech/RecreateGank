@@ -65,6 +65,7 @@ class _DetailPageState extends State<DetailPage> with HTTP, IndicatorFactory {
         controller: refreshController,
         headerBuilder: buildDefaultHeader,
         footerBuilder: buildDefaultFooter,
+        headerConfig: RefreshConfig(),
         footerConfig: RefreshConfig(),
         onRefresh: (up) {
           if (up) {
@@ -94,7 +95,6 @@ class _DetailPageState extends State<DetailPage> with HTTP, IndicatorFactory {
   // 下拉刷新
   Future pullToRefresh() async {
     currentPage = 1;
-    refreshController.sendBack(true, RefreshStatus.refreshing);
     await loadingData(true, isLoadMore: false);
     return null;
   }
@@ -117,6 +117,9 @@ class _DetailPageState extends State<DetailPage> with HTTP, IndicatorFactory {
       if (!category.error) {
         var listData = category.results;
         if (listData.length > 0) {
+          if (!mounted) {
+            return false;
+          }
           setState(() {
             if (!isLoadMore) {
               this.listData = listData;
