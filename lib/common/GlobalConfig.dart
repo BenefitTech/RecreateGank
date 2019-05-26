@@ -15,4 +15,16 @@ class GlobalConfig {
 
   // 侧边栏
   static String welfare = "福利";
+
+
+
+  // 登录
+  static String githubLogin = 'Github 账号登录';
+  static String pwdLogin = '密码登录';
+  static String loginSubView = '登  录';
+  static String pwd = '密码';
+  static String nice = '账号';
+  static String inputCode = '请输入短信验证码';
+  static String inputNice = '请输入用户名/邮箱地址';
+  
 }
