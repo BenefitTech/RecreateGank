@@ -1,6 +1,6 @@
 import 'package:recreate_gank/model/DailyResponse.dart';
 import 'HomeBuildRows.dart';
-import 'package:recreate_gank/pages/components/LittleWidget.dart';
+import 'package:recreate_gank/pages/other/components/LittleWidget.dart';
 
 import 'package:flutter/material.dart';
 

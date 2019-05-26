@@ -239,9 +239,9 @@ import 'package:flutter/material.dart';
 
 import 'package:recreate_gank/model/DailyResponse.dart';
 import 'package:recreate_gank/utils/TimeUtils.dart';
-import 'package:recreate_gank/pages/components/WebViewPage.dart';
+import 'package:recreate_gank/pages/other/components/WebViewPage.dart';
 import 'package:recreate_gank/utils/PageRouteUtils.dart';
-import 'package:recreate_gank/pages/components/PhotoView.dart';
+import 'package:recreate_gank/pages/other/components/PhotoView.dart';
 
 class HistoryList extends StatefulWidget {
   HistoryList(this.gankItem);

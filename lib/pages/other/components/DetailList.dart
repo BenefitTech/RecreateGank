@@ -5,7 +5,7 @@ import 'package:recreate_gank/utils/TimeUtils.dart';
 import 'package:recreate_gank/model/DailyResponse.dart';
 import 'package:recreate_gank/utils/PageRouteUtils.dart';
 import 'package:recreate_gank/common/GlobalConfig.dart';
-import 'package:recreate_gank/pages/components/WebViewPage.dart';
+import 'WebViewPage.dart';
 
 Widget buildDetailListRow(BuildContext context, PostData postData) {
   return InkWell(

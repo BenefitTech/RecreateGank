@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recreate_gank/pages/detail/ArticleDetailPage.dart';
+import 'package:recreate_gank/pages/other/detail/ArticleDetailPage.dart';
 
 fastRoutePageBuilder(BuildContext context, String title) {}
 

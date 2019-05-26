@@ -1,5 +1,5 @@
 import 'package:recreate_gank/model/DailyResponse.dart';
-import 'package:recreate_gank/pages/components/HomeBanner.dart';
+import 'package:recreate_gank/pages/other/components/HomeBanner.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

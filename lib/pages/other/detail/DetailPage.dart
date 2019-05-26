@@ -9,9 +9,9 @@ import 'package:recreate_gank/api/HTTP.dart';
 import 'package:recreate_gank/common/Constant.dart';
 import 'package:recreate_gank/model/DailyResponse.dart';
 import 'package:recreate_gank/utils/IndicatorUtils.dart';
-import 'package:recreate_gank/utils/SharedUtils.dart';
+// import 'package:recreate_gank/utils/SharedUtils.dart';
 import 'DetailListView.dart';
-import 'package:recreate_gank/pages/components/LittleWidget.dart';
+import 'package:recreate_gank/pages/other/components/LittleWidget.dart';
 
 class DetailPage extends StatefulWidget {
   final String feedType;

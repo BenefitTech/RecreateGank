@@ -1,16 +1,16 @@
-import 'dart:convert';
+// import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:recreate_gank/common/Constant.dart';
+// import 'package:recreate_gank/common/Constant.dart';
 import 'package:recreate_gank/model/DailyResponse.dart';
-import 'package:recreate_gank/pages/components/LittleWidget.dart';
-import 'package:recreate_gank/pages/history/HistoryList.dart';
-import 'package:recreate_gank/pages/history/HistoryTitle.dart';
-import 'package:recreate_gank/pages/components/PhotoView.dart';
-import 'package:recreate_gank/utils/PageRouteUtils.dart';
+import 'package:recreate_gank/pages/other/components/LittleWidget.dart';
+// import 'package:recreate_gank/pages/history/HistoryList.dart';
+// import 'package:recreate_gank/pages/history/HistoryTitle.dart';
+// import 'package:recreate_gank/pages/other/components/PhotoView.dart';
+// import 'package:recreate_gank/utils/PageRouteUtils.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 
 Widget buildCategoryListView(BuildContext context, AsyncSnapshot snapshot) {
   CategoryResponse categoryResponse = CategoryResponse.fromJson(snapshot.data);
