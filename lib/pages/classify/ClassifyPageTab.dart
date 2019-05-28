@@ -1,4 +1,4 @@
-import 'package:recreate_gank/pages/detail/DetailPage.dart';
+import 'package:recreate_gank/pages/other/detail/DetailPage.dart';
 import 'package:flutter/material.dart';
 
 class ClassifyTabPage {

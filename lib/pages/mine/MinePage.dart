@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:recreate_gank/common/GlobalConfig.dart';
+
 
 class MinePage extends StatelessWidget {
   @override

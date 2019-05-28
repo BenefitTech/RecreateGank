@@ -1,16 +1,16 @@
 import 'package:recreate_gank/model/DailyResponse.dart';
-import 'package:recreate_gank/pages/components/HomeBanner.dart';
+import 'package:recreate_gank/pages/other/components/HomeBanner.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget homeBuildRows(postData) {
-  List<PostData> banner = List();
+  List<PostData> banners = List();
   if (postData != null) {
     for (var value in postData[0]) {
-      banner.add(PostData.fromJson(value));
+      banners.add(PostData.fromJson(value));
     }
   }
 
-  return HomeBanner(banner, 200.0);
+  return HomeBanner(banners, 200.0);
 }
